@@ -28,6 +28,7 @@ class CircularProgressBarPainter extends CustomPainter {
     greyCirclePaint.strokeCap = StrokeCap.round;
     greyCirclePaint.strokeWidth = 25;
 
+    //setColoredCirclePaint
     Paint coloredCirclePaint = Paint();
     coloredCirclePaint.strokeWidth = 25;
     coloredCirclePaint.color = color;
