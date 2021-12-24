@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class CircularProgressBar extends StatefulWidget {
   const CircularProgressBar({
     Key? key,
+    this.percentageVisibility = true,
     this.duration = const Duration(milliseconds: 700),
     this.curve = Curves.linear,
     required this.radius,
@@ -16,6 +17,7 @@ class CircularProgressBar extends StatefulWidget {
   final Color color;
   final Duration duration;
   final Curve curve;
+  final bool percentageVisibility;
 
   @override
   State<StatefulWidget> createState() {
@@ -59,12 +61,29 @@ class _CircularProgressBarState extends State<CircularProgressBar>
     return AnimatedBuilder(
         animation: _animation,
         builder: (context, child) {
-          return CustomPaint(
-            painter: CircularProgressBarPainter(
-                radius: widget.radius,
-                color: widget.color,
-                percentage: _animationController.value),
-          );
+          return Stack(children: [
+            Positioned.fill(
+              child: Align(
+                child: CustomPaint(
+                  painter: CircularProgressBarPainter(
+                      radius: widget.radius,
+                      color: widget.color,
+                      percentage: _animationController.value),
+                ),
+              ),
+            ),
+            widget.percentageVisibility == true
+                ? Positioned.fill(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        widget.percentage.toString(),
+                        style: const TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold, backgroundColor: Colors.white),
+                      ),
+                    ))
+                : const SizedBox(),
+          ]);
         });
   }
 }
