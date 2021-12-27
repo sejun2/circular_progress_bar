@@ -39,24 +39,18 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            LayoutBuilder(builder: (context, constraints) {
-              return Container(
-                color: Colors.blue,
-                width: constraints.maxWidth,
-                height: 300,
-                child: CircularProgressBar(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.elasticInOut,
-                  radius: 30,
-                  percentage: _percentage,
-                  color: Colors.amber,
-                ),
-              );
-            }),
+            CircularProgressBar(
+              width: 200,
+              height: 200,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.elasticInOut,
+              radius: 100,
+              percentage: _percentage,
+              color: Colors.amber,
+            ),
             TextButton(
                 onPressed: () {
                   Random random = Random();
@@ -67,7 +61,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                 },
                 child: const Text('craete random number 0 ~ 100')),
           ],
-        )),
+        ),
       ),
     );
   }

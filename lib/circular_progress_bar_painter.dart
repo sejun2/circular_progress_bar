@@ -5,9 +5,13 @@ class CircularProgressBarPainter extends CustomPainter {
   final double radius;
   final Color color;
   final double percentage; //progress 진척도
+  double strokeWidth;
 
   CircularProgressBarPainter(
-      {required this.radius, required this.color, required this.percentage});
+      {this.strokeWidth = 20,
+      required this.radius,
+      required this.color,
+      required this.percentage});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -26,11 +30,11 @@ class CircularProgressBarPainter extends CustomPainter {
     greyCirclePaint.color = Colors.grey;
     greyCirclePaint.style = PaintingStyle.stroke;
     greyCirclePaint.strokeCap = StrokeCap.round;
-    greyCirclePaint.strokeWidth = 25;
+    greyCirclePaint.strokeWidth = strokeWidth;
 
     //setColoredCirclePaint
     Paint coloredCirclePaint = Paint();
-    coloredCirclePaint.strokeWidth = 25;
+    coloredCirclePaint.strokeWidth = strokeWidth;
     coloredCirclePaint.color = color;
     coloredCirclePaint.style = PaintingStyle.stroke;
     coloredCirclePaint.strokeCap = StrokeCap.round;

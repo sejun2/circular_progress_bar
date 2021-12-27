@@ -2,8 +2,13 @@ import 'package:circular_progress_bar/circular_progress_bar_painter.dart';
 import 'package:flutter/material.dart';
 
 class CircularProgressBar extends StatefulWidget {
-  const CircularProgressBar({
+  /**
+   * ### width and height must bigger than radius * 2. ###
+   */
+  CircularProgressBar({
     Key? key,
+    required this.width,
+    required this.height,
     this.percentageVisibility = true,
     this.duration = const Duration(milliseconds: 700),
     this.curve = Curves.linear,
@@ -18,6 +23,8 @@ class CircularProgressBar extends StatefulWidget {
   final Duration duration;
   final Curve curve;
   final bool percentageVisibility;
+  final double width;
+  final double height;
 
   @override
   State<StatefulWidget> createState() {
@@ -62,26 +69,26 @@ class _CircularProgressBarState extends State<CircularProgressBar>
         animation: _animation,
         builder: (context, child) {
           return Stack(children: [
-            Positioned.fill(
-              child: Align(
-                child: CustomPaint(
-                  painter: CircularProgressBarPainter(
-                      radius: widget.radius,
-                      color: widget.color,
-                      percentage: _animationController.value),
-                ),
+            Container(
+              width: widget.width,
+              height: widget.height,
+              color: Colors.amberAccent,
+              child: CustomPaint(
+                painter: CircularProgressBarPainter(
+                    strokeWidth: 16,
+                    radius: widget.radius,
+                    color: widget.color,
+                    percentage: _animationController.value),
               ),
             ),
             widget.percentageVisibility == true
-                ? Positioned.fill(
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        widget.percentage.toString(),
-                        style: const TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold, backgroundColor: Colors.white),
-                      ),
-                    ))
+                ? Text(
+                    widget.percentage.toString(),
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        backgroundColor: Colors.white),
+                  )
                 : const SizedBox(),
           ]);
         });
