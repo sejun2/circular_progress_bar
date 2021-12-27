@@ -15,20 +15,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation _animation;
-
-  void _initAnimationResources() {
-    _animationController = AnimationController.unbounded(
-        vsync: this, duration: const Duration(seconds: 2), value: 0.0 //초기값
-        );
-
-    _animation = _animationController.drive(CurveTween(curve: Curves.linear));
-  }
-
   @override
   void initState() {
-    _initAnimationResources();
     super.initState();
   }
 
@@ -48,7 +36,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                   fontSize: 50),
               width: 1000,
               height: 300,
-              duration: const Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 1000),
               curve: Curves.elasticInOut,
               radius: 100,
               percentage: _percentage,
