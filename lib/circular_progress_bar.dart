@@ -5,12 +5,16 @@ class CircularProgressBar extends StatefulWidget {
   /**
    * ### width and height must bigger than radius * 2. ###
    */
-  CircularProgressBar({
+  const CircularProgressBar({
     Key? key,
     required this.width,
     required this.height,
+    this.textStyle = const TextStyle(
+        color: Colors.black, fontSize: 26, fontWeight: FontWeight.bold),
     this.percentageVisibility = true,
     this.duration = const Duration(milliseconds: 700),
+    this.strokeCap = StrokeCap.round,
+    this.strokeWidth = 20,
     this.curve = Curves.linear,
     required this.radius,
     required this.percentage,
@@ -25,6 +29,9 @@ class CircularProgressBar extends StatefulWidget {
   final bool percentageVisibility;
   final double width;
   final double height;
+  final StrokeCap strokeCap;
+  final double strokeWidth;
+  final TextStyle textStyle;
 
   @override
   State<StatefulWidget> createState() {
@@ -68,29 +75,39 @@ class _CircularProgressBarState extends State<CircularProgressBar>
     return AnimatedBuilder(
         animation: _animation,
         builder: (context, child) {
-          return Stack(children: [
-            Container(
-              width: widget.width,
-              height: widget.height,
-              color: Colors.amberAccent,
-              child: CustomPaint(
-                painter: CircularProgressBarPainter(
-                    strokeWidth: 16,
-                    radius: widget.radius,
-                    color: widget.color,
-                    percentage: _animationController.value),
-              ),
+          return Container(
+            color: Colors.red,
+            width: widget.width,
+            height: widget.height,
+            child: Stack(
+              children: [
+                Positioned(
+                  top: 0,
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: CustomPaint(
+                    painter: CircularProgressBarPainter(
+                        strokeCap: widget.strokeCap,
+                        strokeWidth: widget.strokeWidth,
+                        radius: widget.radius,
+                        color: widget.color,
+                        percentage: _animationController.value),
+                  ),
+                ),
+                widget.percentageVisibility
+                    ? Positioned.fill(
+                        child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          widget.percentage.toString(),
+                          style: widget.textStyle,
+                        ),
+                      ))
+                    : const SizedBox()
+              ],
             ),
-            widget.percentageVisibility == true
-                ? Text(
-                    widget.percentage.toString(),
-                    style: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        backgroundColor: Colors.white),
-                  )
-                : const SizedBox(),
-          ]);
+          );
         });
   }
 }

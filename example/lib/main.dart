@@ -43,8 +43,9 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CircularProgressBar(
-              width: 200,
-              height: 200,
+              textStyle: const TextStyle(fontWeight: FontWeight.bold, color: Colors.blue, fontSize: 50),
+              width: 1000,
+              height: 300,
               duration: const Duration(milliseconds: 300),
               curve: Curves.elasticInOut,
               radius: 100,
