@@ -41,6 +41,8 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
               radius: 100,
               percentage: _percentage,
               color: Colors.amber,
+              percentagePrefix: " PREFIX",
+              percentageSuffix: "SUFFIX ",
             ),
             TextButton(
                 onPressed: () {

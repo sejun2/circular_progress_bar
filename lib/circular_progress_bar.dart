@@ -1,6 +1,9 @@
 import 'package:circular_progress_bar/circular_progress_bar_painter.dart';
 import 'package:flutter/material.dart';
 
+//TODO('Satoshi') : percentage text에 소수점 표시될지 여부
+//TODO('Satoshi') : percentage text 커스터마이징
+
 class CircularProgressBar extends StatefulWidget {
   /**
    * ### width and height must bigger than radius * 2. ###
@@ -19,6 +22,8 @@ class CircularProgressBar extends StatefulWidget {
     required this.radius,
     required this.percentage,
     required this.color,
+    this.percentagePrefix = '',
+    this.percentageSuffix = '',
   }) : super(key: key);
 
   final double radius;
@@ -32,6 +37,8 @@ class CircularProgressBar extends StatefulWidget {
   final StrokeCap strokeCap;
   final double strokeWidth;
   final TextStyle textStyle;
+  final String percentagePrefix;
+  final String percentageSuffix;
 
   @override
   State<StatefulWidget> createState() {
@@ -100,7 +107,7 @@ class _CircularProgressBarState extends State<CircularProgressBar>
                         child: Align(
                         alignment: Alignment.center,
                         child: Text(
-                          widget.percentage.toString(),
+                          '${widget.percentagePrefix}${widget.percentage.toString()}${widget.percentageSuffix}',
                           style: widget.textStyle,
                         ),
                       ))
