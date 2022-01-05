@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
               textStyle: const TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.blue,
-                  fontSize: 50),
+                  fontSize: 14),
               width: 1000,
               height: 300,
               duration: const Duration(milliseconds: 1000),
