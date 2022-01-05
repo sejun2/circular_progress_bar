@@ -13,3 +13,4 @@
 ## 0.0.4
 
 * Customizable precentage text added.
+* Decimal point visibility added.

@@ -43,6 +43,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
               color: Colors.amber,
               percentagePrefix: " PREFIX",
               percentageSuffix: "SUFFIX ",
+              hasDecimalPoint: true,
             ),
             TextButton(
                 onPressed: () {

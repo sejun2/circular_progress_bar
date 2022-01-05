@@ -1,7 +1,7 @@
 name: circular_progress_bar
-description: A new Flutter project.
-version: 0.0.1
-homepage:
+description: Circular progress bar can be used in both AOS and IOS.
+version: 0.0.4
+homepage: https://github.com/sejun2/circular_progress_bar
 
 environment:
   sdk: ">=2.15.0 <3.0.0"

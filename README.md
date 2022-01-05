@@ -16,3 +16,4 @@ https://user-images.githubusercontent.com/33044667/147800076-5e187d00-776c-448a-
 | color                | Color of filled progress            | true       | NAN                                                                                              |
 | percentagePrefix     | Prefix of percentage text    | false            | (String)''
 | percentageSuffix     |  Suffix of percentage text  |  false     |  (String)''                    
+| hasDecimalPoint |  Whether the percentage text has decimal point.|  false     | true

@@ -2,29 +2,29 @@ import 'package:circular_progress_bar/circular_progress_bar_painter.dart';
 import 'package:flutter/material.dart';
 
 //TODO('Satoshi') : percentage text에 소수점 표시될지 여부
-//TODO('Satoshi') : percentage text 커스터마이징
 
 class CircularProgressBar extends StatefulWidget {
   /**
    * ### width and height must bigger than radius * 2. ###
    */
-  const CircularProgressBar({
-    Key? key,
-    required this.width,
-    required this.height,
-    this.textStyle = const TextStyle(
-        color: Colors.black, fontSize: 26, fontWeight: FontWeight.bold),
-    this.percentageVisibility = true,
-    this.duration = const Duration(milliseconds: 700),
-    this.strokeCap = StrokeCap.round,
-    this.strokeWidth = 20,
-    this.curve = Curves.linear,
-    required this.radius,
-    required this.percentage,
-    required this.color,
-    this.percentagePrefix = '',
-    this.percentageSuffix = '',
-  }) : super(key: key);
+  const CircularProgressBar(
+      {Key? key,
+      required this.width,
+      required this.height,
+      this.textStyle = const TextStyle(
+          color: Colors.black, fontSize: 26, fontWeight: FontWeight.bold),
+      this.percentageVisibility = true,
+      this.duration = const Duration(milliseconds: 700),
+      this.strokeCap = StrokeCap.round,
+      this.strokeWidth = 20,
+      this.curve = Curves.linear,
+      required this.radius,
+      required this.percentage,
+      required this.color,
+      this.percentagePrefix = '',
+      this.percentageSuffix = '',
+      this.hasDecimalPoint = true})
+      : super(key: key);
 
   final double radius;
   final double percentage;
@@ -39,6 +39,7 @@ class CircularProgressBar extends StatefulWidget {
   final TextStyle textStyle;
   final String percentagePrefix;
   final String percentageSuffix;
+  final bool hasDecimalPoint;
 
   @override
   State<StatefulWidget> createState() {
@@ -105,12 +106,15 @@ class _CircularProgressBarState extends State<CircularProgressBar>
                 widget.percentageVisibility
                     ? Positioned.fill(
                         child: Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          '${widget.percentagePrefix}${widget.percentage.toString()}${widget.percentageSuffix}',
-                          style: widget.textStyle,
-                        ),
-                      ))
+                            alignment: Alignment.center,
+                            child: widget.hasDecimalPoint == true
+                                ? Text(
+                                    '${widget.percentagePrefix}${widget.percentage.toString()}${widget.percentageSuffix}',
+                                    style: widget.textStyle,
+                                  )
+                                : Text(
+                                    '${widget.percentagePrefix}${widget.percentage.toInt().toString()}${widget.percentageSuffix}',
+                                    style: widget.textStyle)))
                     : const SizedBox()
               ],
             ),
